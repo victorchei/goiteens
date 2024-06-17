@@ -2,8 +2,8 @@
   "students": [
     {
       "id": "1",
-      "name": "John Doe",
-      "age": 20,
+      "name": "John Doe33333",
+      "age": "20",
       "email": "john.doe@example.com",
       "phone": "555-1234",
       "faculty": "IT"
