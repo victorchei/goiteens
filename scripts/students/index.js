@@ -14,7 +14,7 @@ async function studentsService() {
   //   });
 
   try {
-    const students = await studentApi.getAllStudents2();
+    const students = await studentApi.getAllStudents();
     const stringHtml = getList(students);
     listContainer.innerHTML = stringHtml;
   } catch (e) {
@@ -22,12 +22,6 @@ async function studentsService() {
     console.error("getAllStudents", e);
   }
 }
-
-// function updateDetails(form, data) {
-//   for (key in data) {
-//     form.elements[key].value = data[key];
-//   }
-// }
 
 function getDetails(obj, isEditable) {
   const { id = "new-id", name = "", age, email, phone, faculty } = obj;
@@ -92,16 +86,11 @@ function clickHandler(e) {
 
   if (target.closest(".edit")) {
     switchEditable(target);
-    return;
-  } 
-  // else if (target.closest('input[type="number"]')) {
-  //   console.log("we do it");
-  // }
+  }
 }
 
 function submitHandler(e) {
   e.preventDefault();
-  e.stopPropagation();
 
   const { target } = e;
   const id = target.dataset.id;
@@ -109,21 +98,12 @@ function submitHandler(e) {
 
   // треба функція додлавання і обновки студентів окремо
   if (id === "new-student") {
-    studentApi
-      .addStudent(newData)
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((e) => console.log(e));
-    return console.log("need to set new student");
+    studentApi.addStudent(newData).catch((e) => console.log(e));
   } else {
-
     studentApi
       .updateStudentPatch(id, newData)
       .then(() => {
-        debugger;
-        // updateDetails(target, newData);
-        // switchEditable(target);
+        switchEditable(target);
       })
       .catch((e) => console.log(e));
   }
@@ -132,4 +112,4 @@ function submitHandler(e) {
 studentsService();
 
 document.addEventListener("click", clickHandler);
-document.addEventListener("submit", submitHandler);
+document.querySelector("#students").addEventListener("submit", submitHandler);
