@@ -2,7 +2,7 @@
   "students": [
     {
       "id": "1",
-      "name": "John Doe33333",
+      "name": "John Doe1",
       "age": "20",
       "email": "john.doe@example.com",
       "phone": "555-1234",
@@ -15,6 +15,14 @@
       "email": "john.doe@example.com",
       "phone": "555-1234",
       "faculty": "IT"
+    },
+    {
+      "id": "f518",
+      "name": "Желізко Віктор Вікторович",
+      "age": "32",
+      "email": "victorchei1992@gmail.com",
+      "phone": "0986533652",
+      "faculty": "IT33"
     }
   ]
 }

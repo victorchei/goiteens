@@ -89,23 +89,35 @@ function clickHandler(e) {
   }
 }
 
-function submitHandler(e) {
+async function addNewStudent(data) {
+  try {
+    await studentApi.addStudent(data);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+async function updateStudent(id, data) {
+  try {
+    await studentApi.updateStudentPatch(id, data);
+
+    switchEditable(target);
+  } catch (e) {
+    console.error(e);
+  }
+}
+
+async function submitHandler(e) {
   e.preventDefault();
 
   const { target } = e;
   const id = target.dataset.id;
   const newData = getFormNewData(target);
 
-  // треба функція додлавання і обновки студентів окремо
   if (id === "new-student") {
-    studentApi.addStudent(newData).catch((e) => console.log(e));
+    await addNewStudent(newData);
   } else {
-    studentApi
-      .updateStudentPatch(id, newData)
-      .then(() => {
-        switchEditable(target);
-      })
-      .catch((e) => console.log(e));
+    await updateStudent(id, newData);
   }
 }
 
