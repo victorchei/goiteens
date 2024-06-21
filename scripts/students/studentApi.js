@@ -187,6 +187,6 @@ class StudentApi2 {
   }
 }
 
-const studentApi = new StudentApi2();
+const studentApi = new StudentApi();
 
 export default studentApi;
